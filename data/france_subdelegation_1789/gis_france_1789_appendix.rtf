@@ -1,0 +1,216 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1038\cocoasubrtf360
+{\fonttbl\f0\fswiss\fcharset0 ArialMT;}
+{\colortbl;\red255\green255\blue255;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww23420\viewh14280\viewkind0
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\qc\pardirnatural
+
+\f0\b\fs24 \cf0 gis_france_1789_appendix
+\b0 \
+\
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\qj\pardirnatural
+\cf0 \
+# Date: Monday, February 1st, 2016\
+# By: Cedric Chambru\
+# Description: procedures used to build the shapefile containing the administrative limits of France around 1789\
+# Version of QGIS used: 2.0\
+\
+\
+\
+
+\b 1. Sources
+\b0 \
+\
+I digitized the map 
+\i LES SUBD\'c9L\'c9GATIONS \'c0 LA VEILLE DE LA R\'c9VOLUTION DE 1789
+\i0  published in the 
+\i Atlas Historique de la R\'e9volution Fran\'e7aise, 
+\i0 Tome 
+\i Le territoire (2) Les limites administratives
+\i0  (S. Bonin, A. Laclau, C. Langlois, D. Nordman and M.V. Ozouf-Marigniers (eds.), 1989). I used Quantum GIS (QGIS) and Google Map to georeference it. The administrative limits of the Duchy of Savoy are not represented on the map. Therefore, I digitized and georeferenced directly the sheet 9 of the below-named documents. I proceed similarly to get the administrative limits of Corsica (sheet 10).\
+\
+The map itself is based on previous work by G. Arbellot, J.P. Goubert, J. Mallet, Y. Palazot (\'c9ditions du C.N.R.S., Paris, 1986): 
+\i Carte des G\'e9n\'e9ralit\'e9s, Subd\'e9l\'e9gations et \'c9lections en France \'e0 la veille de la R\'e9volution de 1789. 
+\i0 The later is a map composed of 12 sheets at a scale of 1:500,000, and based on various historical sources.\
+\
+To get an overview of the reliability of the map, see :\
+\
+- Lepetit Bernard. 
+\i Carte des g\'e9n\'e9ralit\'e9s, subd\'e9l\'e9gations et \'e9lections en France \'e0 la veille de la R\'e9volution de 1789
+\i0  par Guy Arbellot, Jean-Pierre Goubert, Jacques Mallet, Yvette Palazo, 
+\i Annales. \'c9conomies, Soci\'e9t\'e9s, Civilisations
+\i0 , 1988, vol. 43, n\'b0 1, pp. 120-121.\
+\
+http://www.persee.fr/web/revues/home/prescript/article/ahess_0395-2649_1988_num_43_1_283477_t1_0120_0000_000\
+\
+- Vovelle Michel. 
+\i Carte des G\'e9n\'e9ralit\'e9s, Subd\'e9l\'e9gations et \'c9lections en France \'e0 la veille de la R\'e9volution de 1789
+\i0  par Guy Arbellot, Jean-Pierre Goubert, Jacques Mallet, Yvette Palazot, 
+\i Annales historiques de la R\'e9volution fran\'e7aise
+\i0 , 1986, vol. 264, n\'b0 1, pp. 232-233.\
+\
+http://www.persee.fr/web/revues/home/prescript/article/ahrf_0003-4436_1986_num_264_1_1171_t1_0232_0000_2\
+\
+\
+\
+\
+
+\b 2. Construction of the administrative limits\
+
+\b0 \
+There are overall 722 polygons in the shapefile. 719 polygons correspond to a 
+\i subd\'e9l\'e9gation
+\i0 , and 13 correspond to areas laying within today frontiers but not being part of the French territory around 1786.\
+\
+Among the 
+\i subd\'e9l\'e9gation 
+\i0 polygons, quite a few required an adjustment before being coded :\
+\
+		a/ The exact administrative limits of the 
+\i subd\'e9l\'e9gations
+\i0  of Belac, Limoges, and Roye are not perfectly known. I follow the drawings made by the authors.\
+		\
+		b/ The 
+\i subd\'e9l\'e9gations
+\i0  of Landau and Wissemboug shared parts of an undivided territory. I attributed it to the 
+\i subd\'e9l\'e9gation
+\i0  of Landau.\
+\
+		c/ Some 
+\i subd\'e9l\'e9gations
+\i0  had two capital cities at the same time. I attributed randomly the status of capital to one of these cities:\
+				1/ Limoux - Alet -->  Limoux\
+				2/ Orgelet - Lons-le-Saunier --> Lons-le-Saunier\
+				3/ Arbois - Poligny -->  Poligny\
+				4/ Quingey - Salins --> Salins\
+\
+		d/ Some cities (insee code in brackets) are the head office of two 
+\i subd\'e9l\'e9gations.\
+
+\i0 				1/ Rennes (35238): the two 
+\i subd\'e9l\'e9gations
+\i0  are within the same 
+\i G\'e9n\'e9ralit\'e9 
+\i0 (Rennes). I named the first polygon 
+\i Rennes I
+\i0  and the second polygon 
+\i Rennes II
+\i0 .\
+				2/ Bayonne (64102): the two 
+\i subd\'e9l\'e9gations
+\i0  are within the same 
+\i G\'e9n\'e9ralit\'e9 
+\i0 (Bordeaux).  I named the first polygon 
+\i Bayonne (Lannes)
+\i0  and the second polygon 
+\i Bayonne (Labourd)
+\i0 . \
+				3/ Auxerre (89024): the two 
+\i subd\'e9l\'e9gations
+\i0  are in two different 
+\i G\'e9n\'e9ralit\'e9s
+\i0  (Dijon and Paris). I named them after the 
+\i G\'e9n\'e9ralit\'e9s 
+\i0 to which they belong: 
+\i Auxerre (Dijon)
+\i0  and 
+\i Auxerre (Paris).
+\i0 \
+				4/ La-Souterraine (23176): the two 
+\i subd\'e9l\'e9gations
+\i0  are in two different 
+\i G\'e9n\'e9ralit\'e9s
+\i0  (Limoges and Bourges). I named them after the 
+\i G\'e9n\'e9ralit\'e9s 
+\i0 to which they belong: 
+\i La-Souterraine (Bourges)
+\i0   and 
+\i La-Souterraine (Limoges)
+\i0 .\
+				5/ Bort (19028) : the two 
+\i subd\'e9l\'e9gations
+\i0  are in two different 
+\i G\'e9n\'e9ralit\'e9s
+\i0  (Limoges and Riom). I named them after the 
+\i G\'e9n\'e9ralit\'e9s 
+\i0 to which they belong: 
+\i Bort (Riom)
+\i0  and 
+\i Bort (Limoges)
+\i0 . \
+				6/ Montauban (82121): the two 
+\i subd\'e9l\'e9gations
+\i0  are in two different 
+\i G\'e9n\'e9ralit\'e9s
+\i0  (Montauban and Toulouse). I named them after their historical name: 
+\i Montauban
+\i0  and 
+\i Montauban (Bas-Montauban)\
+
+\i0 				7/ M\'e9zi\'e8res and Charleville (08105) are nowadays the same city, and therefore share the same insee code (64102)\
+\
+\
+N.B.: For polygons laying within today frontiers but not belonging to the French territory in 1789, I coded them using the same strategy as the other polygons. I simply coded 0 for the variable 
+\i Generalite.\
+\
+\
+\
+\
+
+\i0\b 3. Longitude, latitude and altitude
+\i\b0 \
+
+\i0 \
+For Deutsch and Belgian ciites, I used the GeoHack tools (https://tools.wmflabs.org/geohack/), which allows to view geographic coordinates mentioned in Wikipedia, to attribute longitude and latitude data. I used Wikipedia.en to get altitude data.\
+For French cities, I used a dataset freely available at https://www.data.gouv.fr/, a website run by the French government and dedicated to release online public data. The file is entitled "Correspondance entre les codes postaux et codes INSEE des communes Fran\'e7aises." It contains information about postal code, insee code, population, size, average altitude, longitude, latitude for every French city. \
+\
+
+\i \
+\
+
+\i0 \
+
+\b 4. List of variables in the file\
+\
+
+\b0 Henceforth when referring to "city", I refer to the the cities that were the head office of the 
+\i Subd\'e9l\'e9gations
+\i0 .\
+\
+ID: unique ID of each polygon.\
+GENERALITE: categorical variable indicating to which 
+\i G\'e9n\'e9ralit\'e9
+\i0  the 
+\i Subd\'e9l\'e9gation
+\i0  belongs to.\
+SUBDELEGAT: unique ID to identify the 
+\i Subd\'e9l\'e9gation
+\i0 .\
+CITY_MAP: name of the city indicated on the digitized map.\
+CODE_INSEE: code identifying the city in the Insee nomenclature.\
+POSTE_CODE: postal code.\
+CAPITAL: dummy variable indicating whether the 
+\i Subd\'e9l\'e9gation
+\i0  also host of the head office of the 
+\i G\'e9n\'e9ralit\'e9
+\i0 .\
+COUNTRY: categorical variable indicating the country of belonging in 2014.\
+\pard\pardeftab490\ql\qnatural
+\cf0 POSTAL_COD: postal code.\
+CITY_2014: name of the city in 2014.\
+NOM_DEPT: name of the department to which the city belong in 2014.\
+NOM_REGION: name of the region to which the city belong in 2014.\
+ALTITUDE: average elevation of the city.\
+CODE_COMM: code identifying the city in the Insee nomenclature.\
+CODE_CANT: code identifying the canton to which the city belongs to in the Insee nomenclature.\
+CODE_DEPT: code identifying the department to which the city belongs to in the Insee nomenclature.\
+CODE_REG: code identifying the region to which the city belongs to in the Insee nomenclature.\
+LATITUDE: latitude of the city.\
+LONGITUDE: longitude of the city.\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\qj\pardirnatural
+\cf0 \
+\
+\
+\
+\
+}
